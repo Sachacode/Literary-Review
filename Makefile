@@ -1,8 +1,8 @@
 LATEX = latexmk -pdf --shell-escape
 
-default: test.pdf
+default: LitRev.pdf
 
-test.pdf: Makefile *.tex references.bib oxycomps.sty
+LitRev.pdf: Makefile *.tex ref.bib oxycomps.sty
 	$(LATEX) LitRev
 
 clean:
