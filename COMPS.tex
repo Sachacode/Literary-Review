@@ -68,7 +68,7 @@
 
 An import feature of modern programming languages is a type system. The purpose of a type system as described in textbook is is help the programmer write a program and find errors before the code is used. However, many programming languages fall short of an ideal type system, allowing for a variety of situations that are not intended by the programmer to cause bugs and break code. To expose the faults of accepted programming languages, the Typma programming language project sets out to highlight those issues by creating a language that has a bad type system on purpose.
 
-The specific problems with type systems that the Typma programming language project is focusing on are issues involving a dynamic type system. A dynamic type system is when the types are determined at runtime as opposed to a static type system, which determines type at compile time. Examples of popular programming languages that have a dynamic type systems are Python and Javascript. Dynamic type systems allow for greater flexibility than static type systems and are popular these days as a result of this flexibility. However, this flexibility can cause problems with programs misusing the type system for unintended results.
+The specific problems of type systems that the Typma programming language project is focusing on are issues involving a dynamic type system. A dynamic type system is when the types are determined at runtime as opposed to a static type system, which determines types at compile time. Examples of popular programming languages that have a dynamic type systems are Python and Javascript. Dynamic type systems allow for greater flexibility than static type systems and are popular these days as a result. However, this flexibility can cause problems with programs misusing the type system for unintended results.
 
 Javascript is a great example of how a dynamic type system can cause problems for the programmer. \textcite{Pradel2014TypeDevil} shows examples of code that leads to inconsistent types. A simple string concatenation program has the result start with ``undefined" because the initial variable was not given a type.
 
@@ -88,184 +88,97 @@ The purpose of the Typma programming language is to exaggerate the issues of a d
 The Typma programming language is apart of a family of languages called esoteric programming languages. The idea of an esoteric programming language is a programming language that is not meant to be used, and either serves ``to
 entertain, to be beautiful, or to make a point" as described in \textcite{Morr2014Esoteric}. In the context of the Typma programming language, Typma is meant to entertain programmers by using an over-designed method of type specification with comedy being achieved when the programmer forgets to specify a data type leading to random results from the Typma program. Moreover, Typma is meant to make a point about how some of Typma's problems with its type system exist in popular languages and if these problems are not okay in Typma, then they are not okay in every programming language. Typma can be referred to as a joke programming language due to the whimsical nature of the language to further distinguish Typma and other gag languages from more serious esoteric programming languages.
 
-The Typma programming language is an extension of the IMP language, an imperative language with basic functionality as seen in cornel notes \textcite{CS4110IMP}. IMP features support for arithmetic expression, boolean expressions, variable assignment, if statements, and while statements. Typma adds features like basic functions, concurrency if time allows, and the Typma type system of overly specific type identification and random typing if non is specified. Here are the formal semantics of IMP:
-\\
-syntax rules
-\\
-arithmetic expressions: \[a \in \textbf{Aexp } a ::= x | n | a_1 + a_2 | a_1 \times a_2\] 
-\\
-boolean expression: \[b \in \textbf{Bexp } b ::= \textbf{true} | \textbf{false} | a_1 < a_2\] 
-\\
-commands:   \[c \in \textbf{Com } c ::= \textbf{skip} | a ::= x | c_1;c_2 | \textbf{if } b \textbf{ then } c_1 \textbf{ else } c_2 |\] \[\textbf{while } b \textbf{ do } c \] 
-\\
-evaluation rules
-\\
-still figuring out how to put them in latex
-\\
-The Typma programming language project makes use of a lexer, parser, and interpreter. A lexer is a program that takes in a text and outputs the text represented by tokens depending on what the text is. A parser is a program that takes in the tokens from the lexer and outputs a representation of the code as a tree. This project will use an AST to represent code, abstract syntax tree, where each node represents a part of the code. The interpreter will take in the tree and evaluate the code to the specifications of the Typma language, outputting any print statements from the code.
+An important component of the Typma programming language project is type theory. As described in the textbook, "type theory is a branch of mathematical symbolic logic, which derives its name from the fact that it formalizes not only mathematical terms – such as a variable x, or a function f – and operations on them, but also formalizes the idea that each such term is of some definite type." For example, x can have the type n for natural number which is different from the type of the function with : N -\> N, this represent a function that takes in a natural number and returns something with the type of natural number. Type theory is the basis for any programming language's type system, and Typma is no exception. The notation and definitions of type theory will be used to formalize the semantics of the Typma programming language.
 
-The Typma programming language can be evaluated either in big step or small step semantics. According to \textcite{CS4110IMP}, big step semantics are when evaluation steps are combined into a larger step for evaluation and small step semantics are when each evaluation step is evaluated one at a time. For example, the arithmetic expression (2+2)-1 can be evaluated in either big-step or small-step semantics. The big step semantics would look like this:
+An import aspect of Typma project are features of functional programming that are described in \textcite{OCaml}. In functional programming, algebraic data types are type variants that can contain both sum types and product types. A sum type is ``a value of a variant is formed by one of the constructors" and a product type is ``a constructor can carry tuples or records, whose values have a sub-value from each of their component types." For code that deals with different versions of an algebraic data type, pattern matching in a let expression is a way to see what variation of a type an input is, and what to do with it when the right pattern is found. This code structure prevents anything like a null-pointer exception in Java, because the type checker will throw an error at compile time if any variants are not accounted for in the let expression.
 
-The small-step method looks like this:
+The Typma programming language is an extension of the IMP language, an imperative language with basic functionality as seen in cornel notes \textcite{CS4110IMP}. IMP features support for arithmetic expression, boolean expressions, variable assignment, if statements, and while statements. The purpose of IMP is to teach semantics of programming languages and is not meant to be used for actual programming.
+
+The Typma programming language project makes use of a lexer, parser, and interpreter. A lexer is a program that takes in a text and outputs the text represented by tokens depending on what the text is. A parser is a program that takes in the tokens from the lexer and outputs a representation of the code as a tree. Also, a parser can written without the use of tokens from a lexer. This project will use an AST to represent code, abstract syntax tree, where each node represents a part of the code. The interpreter will take in the tree and evaluate the code to the specifications of the Typma language, outputting any print statements from the code.
+
+The Typma programming language can be evaluated either in big step or small step semantics. According to \textcite{CS4110IMP}, big step semantics are when evaluation steps are combined into a larger step for evaluation and small step semantics are when each evaluation step is evaluated one at a time. The difference between big and small step semantics can be seen with an addition expression 1 + 2 + 3. In big step, this would be one compound step, with a sub step evaluating 1+ 2, then adding that to 3. In small step, 1 + 2 would be evaluated then the result of 3 would be added to 3, 3 + 3.
+
+This project will make use of a proof assistant as opposed to normal coding. As described in \textcite{Pierce2021Software}, proof assistants ``are hybrid tools that automate the more routine aspects of building proofs while depending on human guidance for more difficult aspects." The application of a proof assistant for the Typma codebase would be for modeling a programming language in the proof assistant to further reason and prove aspects of the language.
 
 \section{Prior Work}
 
-There are a great number of esoteric languages that have been created with some similarities and differences to the Typma programming language in both function and purpose. This paper will discuss a small sample of previous esoteric languages: Brainfuck, Malbolge, and J.A.V.A..
+There are a great number of esoteric languages that have been created with some similarities and differences to the Typma programming language in both function and purpose. Brainfuck is a well-known esoteric programming language, with a purpose of having the smallest amount of syntax symbols and the smallest size of compiler of any programming language as described in \textcite{Morr2014Esoteric}. Another famous esoteric programming language is Malbolge, a language that was designed to be near-impossible to both understand and use also seen in \textcite{Morr2014Esoteric}. These are famous esoteric programming languages but they are very different from the Typma programming language project.
 
-Brainfuck is a well-known esoteric programming language, with a purpose of having the smallest amount of syntax symbols and the smallest size of compiler of any programming language is described in \textcite{Morr2014Esoteric}. Brainfuck's functionality is based on memory cells each containing an unsigned byte value between 0 and 255. Brainfuck keeps track of a head cell, which is a pointer to a memory cell with the other cells being linearly connected similar to list. Brainfuck has eight characters for syntax: ``$>$" moves the head to the right, ``$<$" moves the head to the left, ``+" increments the value of the current cell, ``-" decrements the value of the current cell, ``," reads an ASCII character from the user and writes the value to the current cell, ``." outputs the current cell’s value as an ASCII character, ``[" skips to the matching closing bracket if the current cell contains a 0, and ``]" returns to the matching opening bracket if the current cell does not contain a 0. This is what a Brainfuck hello world program looks like:
+There are two esoteric programming languages that are relevant to the Typma programming language project. J.A.V.A. is focused on an obtuse object system which also leads to an obtuse type system and SimPPLe which is focused on random number generation messing with variables.
 
-\begin{lstlisting}
-++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+
-[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.----
---.--------.>>+.>++.
-\end{lstlisting}
+J.A.V.A., short for Just Another Verbose Annoyance, a language that can be described as an object disoriented language found on \textcite{J.A.V.A.}. The point of this programming language is to exaggerate the problems of object-oriented programming and more specially, the issues with Java's class system. J.A.V.A. adds several extra steps to creating a class compared to Java. These steps are creating a class requires a class factory, which requires a class factory provider, which the only implementation of a class factory provider is a ClassFactoryProviderSingleton, which contains a static instance of a singleton. By adding all of these steps to making a class, J.A.V.A.'s type system becomes very complicated as a result. If a programmer wanted to print something in J.A.V.A., they would have to call the StatementBuilder object just to make a Statement, then an ExpressionBuilder object to make an Expression all just to get a string into a print statement. Although the approach is different, J.A.V.A. and Typma both have awful type systems, with J.A.V.A. forcing the use of a large number of object to achieve a simple task but Typma requires all instances of a value with type be specified or the compiler with randomly decide what the type is at runtime.
 
-Brainfuck is a different kind of esolang compared to Typma. Brainfuck is meant to show the limit of minimal symbols for minimal function, while Typma is a high-level programming language that is just a worse version of language like Python or Javascript. In addition, Brainfuck is not calling any problem of programming languages to attention, on the other hand Typma sets out to mock problems with modern programming languages.
+SimPPLe, short for Simple Probabilistic Programming Language, is a probabilistic programming language that can be found on \textcite{SimPPLe}. SimPPLe programs will produce different results every time they are ran because the language is based on random number generation. Any variable that is declared will be assigned a random number, making programs useless as there is no control of what variables are in SimPPLw. As the name suggests, this language is simple as there is only support for basic math operations. Typma code that is written without type specifications is similar in function to SImPPLe, the difference is that Typma randomizes variables based on what type they could be, meaning there are only three ways each variable can be interpreted as, integer, string, and boolean respectively. Typma also expands this random nature to a language with high level statement like an if statement or a while loop for more complicated outcomes.
 
-An other famous esoteric programming language is Malbolge, a language that was designed to be near-impossible to both understand and use \textcite{Morr2014Esoteric}. Techniques such as encryption, self-modification, and unpleasant operators combine to make something so difficult to program in, the first program was written two years after Malbolge's specifications were formalized. Going into detail on the specifics of how Malbolge works is out of scope for this paper, but the main idea is that Malbolge is designed to be as difficult to use as possible. Here is a simple cat program in Malbolge:
-
-\begin{lstlisting}
-(=BA#9"=<;:3y7x54-21q/p-,+*)"!h\%B0/.
-~P<
-<:(8&
-66#"!~}|{zyxwvu
-gJ\%
-\end{lstlisting}
-
-Both Malbolge and Typma serve to frustrate the programmer with features that are designed to frustrate rather than function. However, Malbolge is several leagues above Typma in difficulty of use, with Typma just adding what would be a minor inconvenience compared to the hell that is Malbolge. Malbolge is also a stack based language like Brainfuck where Typma is again a high-level language.
-
-The final esoteric programming language to examine is an obscure language called J.A.V.A., short for Just Another Verbose Annoyance, a language that can be described as an object disoriented language. The point of this programming language is to exaggerate the problems of object-oriented programming and more specially, the issues with Java's class system. J.A.V.A. adds several extra steps to creating a class compared to Java. These steps are creating a class requires a class factory, which requires a class factory provider, which the only implementation of a class factory provider is a ClassFactoryProviderSingleton, which contains a static instance of a singleton. In addition, J.A.V.A. requires the number of semi-colons to increase Instead of reading a description, looking a helloworld program in J.A.V.A. puts into perspective on how these rules work in the language:
-
-\begin{lstlisting}
-ClassFactory factory = ClassFactoryProviderSingleton.getSingleton()
-    .getFactory(ClassFactoryProvider.CLASS);
-factory.setName("Hello, World!");
-MethodFactory methods = factory.createMethodFactory();;
-Method main = methods.createMethod("main");;;
-StatementBuilder statements = main.createStatementBuilder();;;;
-Statement statement0 = statements.createStatement(0);;;;;
-ExpressionBuilder expressions = statement0.getExpressionBuilder();;;;;;
-Expression helloWorldString = expressions.stringLiteral("Hello, World!").build();;;;;;;
-Expression printHelloWorld = expressions.clear().call("println")
-    .on(helloWorldString).build();;;;;;;;
-statement0.set(printHelloWorld).ignoreResult()
-    .save();;;;;;;;;
-Statement statement1 = statements.createStatement(1);;;;;;;;;;
-expressions = statement1.getExpressionBuilder();;;;;;;;;;;
-Expression return = expressions.return().from().method()
-    .with(expressions
-    .nullLiteral.build());;;;;;;;;;;;
-statement1.set(return).ignoreResult()
-    .save();;;;;;;;;;;;;
-statements.updateStatement(0).set(statement0)
-    .save();;;;;;;;;;;;;;
-statements.updateStatement(1).set(statement1)
-    .save();;;;;;;;;;;;;;;
-main.updateStatements.set(statements)
-    .save();;;;;;;;;;;;;;;;
-factory.addMethod(main);;;;;;;;;;;;;;;;;
-factory.build().main();;;;;;;;;;;;;;;;;;
-\end{lstlisting}
-   
-Compared to the other esoteric programming languages, J.A.V.A. is the most similar to Typma. They are both high-level languages that serve to mock accepted languages for their problems. The difference is that the problem focused on is completely different. J.A.V.A. is about the problems of Java's class system but Typma is about bad type systems in Python and Javascript.
-
-While many esoteric languages exists, none of them focus on Typma's goal to create an inconvenient type system. None of the esoteric programming languages researched had Typma's feature of requiring extra syntax to specify data types. Many esoteric programming languages have random number generation as a feature of the language but do not apply that to a type system. As a result, the Typma programming language is the first of its kind.
-
-The Typma programming language project takes indirect approach to exposed the problems of a bad type system. On the other hand, TypeDevil takes a direct approach to show the problems of dynamic type systems in the context of Javascript. TypeDevil is a benchmark that generating warnings if inconsistent types are found. TypeDevil is tool that is meant to be used to help real programming project, whereas Typma is not meant to be used for any serious programming project of any kind. Also, TypeDevil is focused on Javascript but Typma related to any language with a faulty dynamic type system. 
+The Typma programming language project takes indirect approach to exposed the problems of a bad type system. On the other hand, TypeDevil from \textcite{Pradel2014TypeDevil}, takes a direct approach to show the problems of dynamic type systems in the context of Javascript. TypeDevil is a benchmark that generating warnings if inconsistent types are found. TypeDevil is tool that is meant to be used to help real programming project, whereas Typma is not meant to be used for any serious programming project of any kind. Also, TypeDevil is focused on Javascript but Typma related to any language with a faulty dynamic type system. 
 
 \section{Ethical Considerations}
 
-The Typma project is something that can be done in almost any programming language, with the language of choice for this project being OCaml. There is nothing significant about which programming language the Typma parser and interpreter are being written in except there are many design choices and features that do not translate to other languages outside of the functional programming paradigm. This is an accessibility problem because many programmers do not have the experience with functional programming to be able to understand some specific methods of the Typma project or may even have a difficult time reading and understanding the code in general. Programmers have problems when learning how to use a new programming language in general as shown in \textcite{Shrestha2020Here}. Something that can get in the way of learning a new programming language is prior knowledge from another programming language. For example if you are a Java programmer trying to learning Python, a problem that could happen is the habit of placing a semi-colon at the end of every statement will make getting used to Python's lack of semi-colons with this usage more difficult. 
+Computer science as a field has a massive bias towards the English language with the use of English for keywords in programming languages. Python, C, C++, Java, Javascript, Haskell, OCaml, and Rust all have English as the language of the language. Typma will be no different from these mainstream languages by also using English keywords. While this poses no issues for native English speakers, people for whom English is a second language or people who do not know know any English are at a major disadvantage when it comes to becoming an experienced computer scientist. 
 
-The surface problem of learning a new language will happen for anyone trying to understand the code of the Typma project who does not know OCaml. But what makes this an accessibility problem is that Typma's implementation uses features of functional programming. One of these features is declarations of custom types. Type declarations are important to how the different types of statements, like a print statement or a function declaration, are categorized in Typma programs. Typma commands are represented with a type called ``cmd" which has different variant depending on what type of expression it is. Here is what the cmd type will be declared as:
+ In \textcite{Veerasamy2014Teaching}, researchers set out too find if computer science higher education ``students’ English knowledge of programming keywords and their programming abilities are related with each other." This paper outlined a methodology to test this by giving students an English language test and a computer science test to see the performance of the students in each fields. The students would not be native English speakers and some students would take the computer science course in English and the others would take the course in their native language. This experiment was not tested, so there are no results to prove the claim. The framework could be used in an experiment in the future to prove the claim of non-English speakers having more success learning computer science in their own language. For this paper, the discussion does not extend to changing the keywords, just focusing on the language of the education.
 
-\begin{lstlisting}
-(* types in typma *)
-type typma =
-  | int
-  | bool
-  | str
+For \textcite{Idris2018Correlation} a test similar to the one prosed in \textcite{Veerasamy2014Teaching} was conducted. A study was done at an Arabic-speaking university to see if English language ability was correlated to higher performance in computer science courses. The study also looked at if lecturers, labs, mathematics background and logical thinking affect programming skills to see if those factors are more impactful than language. The study found that there is a moderate correlation between programming ability and English comprehension, showing a need for computer science courses in other languages. The study concluded that a language should be created that is written in Arabic and is designed to teach programming. This could be used for classes taught in Arabic to help students who are unfamiliar with English learn computer science.
 
-(* function parameters *)
-type param =  string * typma option
+In addition, \textcite{Guo2018Non} performed a survey to see how the English barrier affected learning computer science in the context of online learning as opposed to the university setting of \textcite{Idris2018Correlation}. Moreover, this survey received 840 responses from 86 countries and 74 native languages, different from just studying one language. The survey consisted of eight questions, such as asking the participant what their native language was, level of English fluency to describe the participant's background. There were three questions directed to non-native English speakers about difficulties with in programming because of the language barrier, improvements to instructional materials, and how programming has affected English proficiency. One question was directed to native English speakers about observations they have on non-native English speaker's difficulties with programming. The study found responses discussing problems like non-native English speakers writing unintelligible code, documentation and tutorials containing cultural references and slang difficult for non-native speakers, and learning computer science and English at the same time being difficult.
 
-type cmd =
-  | Skip
-  | Print of aexp
-  | Ass of string * aexp
-  | Seq of cmd * cmd
-  | If of bexp * cmd * cmd
-  | While of bexp * cmd
-  | Do of cmd * bexp
-  | Fun of param * cmd
-  \end{lstlisting}
-
-
-Languages like Python, Java, and C++ do not have as expressive algebraic data types. Those languages do have objects, but objects are very different from type declarations and trying to understand type declarations as if they were objects defeats the purpose of trying to understand functional programming. Although the programming language being used would not normally affect accessibility to a large enough extent to be noticed, the Typma implementation of functional programming features would make it difficult for someone without a basic understanding of functional programming to understand the methods of the project.
-
-It is important to stress that the Typma programming language is not meant to be used for anything practical, but it is worth it to see how the logical extreme of a bad type system could cause ethical issues if it was ever used. These problems go past making the developer's life harder; if any unspecified data types make it into a released version of software written in Typma, people's lives could hang in the balance of whatever the random number generation decides.
-
-For example, the paper \textcite{Tachtler2021Unaccompanied} explores ways to ethically make mental health apps with unaccompanied migrant youth in mind. If some version of the Typma programming language was used to make this mental health app, it would be more difficult to make the app function, preventing mental health from being addressed. If the app featured some kind of notification that was time based, like a wellness notification at 9:00 a.m., and the programmer did not specify the type properly to avoid random typing, the notification only has a chance to be played at the right time depending on how the interpreter evaluates the unspecified type. Such a language that allows problems like this to slip by without being noticed could lead to the youth using the app randomly to not see the notification at the right time or not at all, thus failing to help the youth who need help. 
-
-A different language would have a type error that would flag this kind of issue. A language like Java requires types to be specified upon declaration or an error will be generated. Typma however will run whether or not the type is specified, leading to situations that programmers do not intend to happen. In a perfect world the programmer would not make the error of forgetting to specify types in accordance to proper Typma conventions, but that is unrealistic to assume that programmers are perfect and if Typma was used these issues would bleed into the real world. Typma is too dangerous to be used because of potential ethical issues it can cause by hurting the basic functionality of apps.
+The issue of the English barrier to the Typma programming language project and computer science in general is a real problem that gives native and fluent English speakers and advantage in computer science. The Typma project is unable to address this issue because my only fluent language is English. Typma could have alternate parsers for other languages, but that does not change that the concepts would still be hard to convey because English is at the center of programming language design. The only thing I could do is write a version of Typma in Japanese, as I have six years of Japanese language education as well as a minor in Japanese language studies. My basic understand of Japanese language could allow me to write a version of Typma that could be understood by a Japanese native speaker, however I am not sure how to evaluate this with as I do not know anyone who is learning computer science with Japanese as their native language. Moreover, this could make the project out of scope because the focus is on the semantics, not the parsing side of programming languages. While the problem of the English barrier is not able to be solved for the Typma project, if times allows and the project is finished early, I may implement a Japanese version of Typma.
 
 \section{Methods}
 
-The first component of the Typma programming language project is writing the formal semantics of the language. Not every situation regarding Typma's type system has been decided at this time, and the creation of Typma's formal semantics would settle the specifics. Although not all of Typma's features have been decided on yet, the language will be a derivative of basic semantics without Typma's type system implemented. Here are the base semantics:
-
-The Typma codebase will consist of seven files: lexer.mll, parser.mly, syntax.ml, env.ml, bigstep.ml, bigStep.ml, smallStep.ml, and main.ml.
-
-The lexer.mll file will contain the specification for the tokens of Typma. Examples of tokens are parenthesis, math symbols, statements like if, and booleans. The parser.mly takes in the tokens and organizes them into the AST of syntax types. The syntax.ml file defines types for math operators and expressions, boolean operators and expressions, comparison operators, and Typma commands. It is possible to write a parser programming that does not use a lexer, but manually parsing code is more difficult and time consuming beacuase reasons. Moreover, the libraries OCamllex and Menhir are set up for a parser and lexer, so comitting to writing a manual parser would require spending time to write code that is already written by those libraries. The focus of the Typma programming language project is on the evaluation step of the codebase, there is no need to re-invent the wheel for the parser that will function the same as any other parser.
-
-The env.ml file defines functions for the evaluation of the AST and error types for runtime errors. The bigStep.ml file will have the evaluation of the AST with the big-step version of Typma semantics. The smallStep.ml will have the evaluation of the AST with the small-step version of Typma semantics. The main.ml file will be the file that will be ran in the command line to run a Typma file. An option is given for running Typma in either big or small step semantics depending on the command used to run the Typma file.
-
-Many of the representations of the Typma programming language could be represented will objects as opposed to type declarations. For example, the contents of the syntax are all declared as types with different variants for each kind of syntax. Objects are another way to represent the syntax of the Typma programming language. The math expression type could instead be a math expression class, with the variants integer, variable, and math expression instead being subclasses. While objects can be used to represent the syntax, this is not optimal when compared to a type declaration. The code for a type declaration is a fraction of the code that would be needed to make classes and subclasses. In addition to having significantly more code to accomplish the same task, the code for evaluation would be unable to take advantage of pattern matching on the the different patterns for commands and expressions in Typma. Using type declarations is less work and less code than objects for this project.
-
-While not every situation has been planned out, the general idea of how the Typma programming language functions has been decided. Typma will act exactly like IMP with functions added when proper Typma conventions are followed with type specification. Typma's type specification is for instances of data being used, not on variable declaration. An example of a Typma variable looks like this:
+The first step of the Typma programming language project is writing the formal semantics of the language. Not every situation regarding Typma's type system has been decided at this time, and the creation of Typma's formal semantics would settle the specifics. At a base level, Typma is an extension of IMP, adding on functions, small changes to syntax, and a types system with Typma's key features. The supported statements of Typma are variable assignment, print statements, if statements, while statements, and function statements. Typma supports arithmetic expressions, boolean expressions, and comparison expressions. In Typma, only instances of data at runtime have types, which can be integers, strings, or booleans, which can be specified with Typma's specification operators.
 
 \begin{lstlisting}
-a = INT[10];
+INT[10];
+
+STR[Hello];
+
+BOOL[true];
 \end{lstlisting}
 
-This is an example of the syntax for type specification, but the above code there is no need to specify the type because variable declarations do not store types in Typma. If this variable was printed, the declaration with the INT() specifier would not specify the instance of the variable that is being printed. Take note the Type specifier operator is meant to look at ugly as possible.
+Type errors do not exist in Typma because the compiler will resolve any lexical ambiguity or deliberate type errors as a result of improper usage of specification operators with random interpretations. For example:
 
 \begin{lstlisting}
-a = INT[10];
-
-print(a);
-\end{lstlisting}
-
-In order to avoid random typing the use of the variable needs to be specified.
-
-\begin{lstlisting}
-a = 10;
+print(10);
 
 print(INT[10]);
 \end{lstlisting}
 
-To recap, variables have no type, only the instances of variables or data has types in Typma.
+Technically, print statements only accept strings for data, and in a normal language, this statement would throw a type error because there is an integer in a print statement. However, Typma's implementation of dynamic typing with random number generation, will decide what the integer 10 could be as a string. Is the integer an ASCII value? Then the interpreter will print out the character with the ASCII value of 10. Is the integer just a string ``10"? Then the interpreter will print out the string ``10". This system is how ambiguity is solved when either no type is specified or the wrong type is specified.
+
+To run Typma programs, a basic command line interface will take in a file to be ran through the Typma codebase. There will be a different command for evaluation in big step or small step semantics.
+
+The implementation of the lexer, parser, and command line arguments will be written in OCaml, but the interpreter will be written in a proof assistant, coq. In the proof assistant, the syntax, typing judgements, and evaluation rules would be written out as definitions. Then computable functions would be defined for typing and evaluating a typma program. Now, the proofs can be written as for the computable functions to show that they are a sound representation of Typma's formal rules. The proof file is then extracted into an OCaml file to be ran with the rest of the codebase. Because the evaluation rules of typma will be defined in a proof, this will allow for a greater degree of representing the formal semantics of Typma as opposed to directly writing the evaluation functions in OCaml. 
+
+The codebase of Typma will contain a lexer, parser, and interpreter that will take in Typma code as in input and output the results of the Typma program as per the specifications of Typma semantics. It is possible to write a parser programming that does not use a lexer, but manually parsing code is more difficult and time consuming because reasons. Moreover, the libraries OCamllex and Menhir are set up for a parser and lexer, so committing to writing a manual parser would require spending time to write code that is already written by those libraries. The focus of the Typma programming language project is on the evaluation step of the codebase, so there is no need to re-invent a parser that will function the same as any other parser.
+
+The interpreter will support an option to evaluate the code based on big step or small step semantics. Choosing big or small step does not change the outcome of the program, the option is there for added detail. If time allows, concurrency maybe added to the small step version for adde chaos with respect to the order that operations with unspecified types are evaluated in. Moreover, the interpreter will be written in a proof assistant as opposed to just being coded. This is to show that the interpreter is a correct implementation of the Typma semantics.
+
+Many of the representations of the Typma programming language could be represented will objects as opposed to abstract data types. For example, the contents of the syntax are all declared as types with different variants for each kind of syntax. Objects are another way to represent the syntax of the Typma programming language. The math expression type could instead be a math expression class, with the variants integer, variable, and math expression instead being subclasses. While objects can be used to represent the syntax, this is not optimal when compared to a type declaration. The code for a type declaration is a fraction of the code that would be needed to make classes and subclasses. In addition to having significantly more code to accomplish the same task, the code for evaluation would be unable to take advantage of pattern matching on the the different patterns for commands and expressions in Typma. Using type declarations is less work and less code than objects for this project.
 
 \section{Evaluation} 
 
-The first part of evaluating the function of the Typma codebase is if it type checks at compile time. This is an indication that the types of the functions return the type that the are supposed to. In addition to type checking, to check if the Type codebase is an accurate representaion of the Typma programming language, there will be test cases of Typma code that will give the intended result as per the specifications of the Typma semantics to show the codebase is correct. The large number of test cases will prove that the Typma codebase is a proper implementation of the Typma programming language as defined in the formal semantics of Typma.
+The first part of evaluating the function of the Typma codebase is if it type checks at compile time. If the Typma codebase type checks, it is not an indication that the semantics of Typma have accurately re-created, but it does show that the types of the functions return the type that the are supposed to.
+
+In addition to type checking, to check if the Type codebase is an accurate representation of the Typma programming language, there will be test cases of Typma code that will give the intended result as per the specifications of the Typma semantics. These test cases will provide evidence that the Typma codebase is a proper implementation of the Typma programming language as defined in the formal semantics of Typma.
 
 Here is an example of a test case with Typma code:
 
 \begin{lstlisting}
-print(INT[10]);
+print(STR[10]);
 \end{lstlisting}
 
-If the Typma code base prints a 10, then the function of the code base is shown to be correct.
+If the Typma code base prints a 10, then the function of the code base is shown to be correct for this feature. All test cases that do not involve random outcomes will be ran with a program that checks to see if the correct result if given.
 
-Some Test cases will have a random number of outcomes, here is an example:
+Many test cases will have a random number of outcomes, here is an example:
 
 \begin{lstlisting}
 print(10);
 \end{lstlisting}
 
-This test case could print out 10, but the random typing could type it as a boolean and print true like a c boolean. These random test cases would have to be ran multiple times to show that the Typma code base is functioning correctly.
+This test case could print out ``10" as a string, but the random typing could type it as a boolean, true like a c boolean and print the string ``true", or 10 could be an ASCII value for a symbol. These random test cases would have to be ran multiple times to show that the Typma code base is functioning correctly. The results of the random tests will have to be checked to see if every possibility happened in the test and if the distribution is equal, as the random nature of Typma favors no outcome and all possibilities have an equal chance of happening.
 
-If there is enough time, another way to evaluate the Typma code base would be a simple proof that would prove the types are correct for the codebase.
+The final evaluation of the Typma code base would be the correct implementation of Typma's evaluation functions in a proof assistant. The proof is evidence that the codebase's evaluation rules are accurate to the formal semantics, whereas just relying on test cases is not rigourous enough to show that the Typma codebase succeeded in represent the semantics of Typma.
 
 \section{Proposed Timeline}
 
@@ -294,6 +207,10 @@ Assuming no work in done is the summer, here is the proposed bi-weekly timeline:
 \item Dec 15: Project due
 
 \end{itemize}
+
+\section{Conclusion}
+
+The Typma programming language project is a parody of dynamic type systems. Although normal programs can be written in Typma, it is more frustrating with one mistake of missing a type specifier operator causing the program to produce random outcomes.While Typma's intentionally bad type system is ridiculous, many accepted programming languages are not as functional as one would think.
 
 \printbibliography 
 
