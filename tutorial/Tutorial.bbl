@@ -1,0 +1,54 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global}
+    \entry{Pierce2021Software}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=7365a4e827c2dfa2c5af0c0ec4c18c27}{%
+           family={Pierce},
+           familyi={P\bibinitperiod},
+           given={Benjamin\bibnamedelima C.},
+           giveni={B\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \strng{namehash}{7365a4e827c2dfa2c5af0c0ec4c18c27}
+      \strng{fullhash}{7365a4e827c2dfa2c5af0c0ec4c18c27}
+      \strng{bibnamehash}{7365a4e827c2dfa2c5af0c0ec4c18c27}
+      \strng{authorbibnamehash}{7365a4e827c2dfa2c5af0c0ec4c18c27}
+      \strng{authornamehash}{7365a4e827c2dfa2c5af0c0ec4c18c27}
+      \strng{authorfullhash}{7365a4e827c2dfa2c5af0c0ec4c18c27}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Electronic}
+      \field{month}{08}
+      \field{title}{Software Foundations Volume 1: Logical Foundations}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://softwarefoundations.cis.upenn.edu/lf-current/index.html
+      \endverb
+      \verb{url}
+      \verb https://softwarefoundations.cis.upenn.edu/lf-current/index.html
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
