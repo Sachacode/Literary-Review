@@ -1,6 +1,11 @@
 LATEX = latexmk -pdf --shell-escape
 
-default: COMPS.pdf
+
+.PHONY: build clean
+
+all: build clean
+
+build: COMPS.pdf
 
 COMPS.pdf: Makefile *.tex references.bib oxycomps.sty
 	$(LATEX) COMPS
